@@ -25,15 +25,15 @@ void mario(void)
     {    
         height = get_int("Height: ");
     }
-    while (height < 1 || height > 8);
+    while (height < 1 || height > 8); // valid heights only 1 to 8
     
     for (int x = 1; x <= height; x++)
     { 
-       loop_print(' ', height - x);
-       loop_print('#', x);
-       printf("  ");
-       loop_print('#', x);
-       printf("\n");
+    	loop_print(' ', height - x);
+    	loop_print('#', x);
+    	printf("  ");
+    	loop_print('#', x);
+    	printf("\n");
     }
 }
 
