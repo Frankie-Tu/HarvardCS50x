@@ -4,32 +4,32 @@
 #include <ctype.h>
 #include <string.h>
 
-int checkifint(string arg);
-string encrypt(string plaintext, int encrypt_key);
+int checkifstring(string arg);
+string encrypt(string plaintext, string encryption_keys);
 
 int main(int argc, string argv[])
 {
     // check number of arguments, and if argv[1] is of integer value
-    if (argc != 2 || checkifint(argv[1]) == 1)
+    if (argc != 2 || checkifstring(argv[1]) == 1)
     {
-        printf("Usage ./caesar key\n");
+        printf("Usage ./vigenere key\n");
         exit(1);
     }
     else
     {
-        int encryption_key = atoi(argv[1]);
+        string encryption_keys = argv[1];
         string plaintext = get_string("plaintext: ");
-        string ciphertext = encrypt(plaintext, encryption_key);
+        string ciphertext = encrypt(plaintext, encryption_keys);
         printf("ciphertext: %s\n", ciphertext);
     }
 }
 
-int checkifint(string arg)
+int checkifstring(string arg)
 {
     // loop through characters in string (char[])
     for (int i = 0; i < strlen(arg); i++)
     {
-        if (! isdigit(arg[i]))
+        if (! isalpha(arg[i]))
         {
             // in case if any character is not a digit, return 1
             return 1;
@@ -38,24 +38,27 @@ int checkifint(string arg)
     return 0;
 }
 
-string encrypt(string plaintext, int encrypt_key)
+string encrypt(string plaintext, string encryption_keys)
 {
     // encrypt string character by charater
     for (int i = 0; i < strlen(plaintext); i++)
     {
+        int encryption_key;
         if (isalpha(plaintext[i]))
         {
+            // convert current alphabetic value in encryption_keys to encryption_key
+            encryption_key = tolower(encryption_keys[i % (strlen(encryption_keys))]) - 'a';
+            
             // encrypting logic, cipher
             if (isupper(plaintext[i]))
             {
-                plaintext[i] = 'A' + (plaintext[i] - 'A' + encrypt_key) % 26;
+                plaintext[i] = 'A' + (plaintext[i] - 'A' + encryption_key) % 26;
             }
             else
             {
-                plaintext[i] = 'a' + (plaintext[i] - 'a' + encrypt_key) % 26;
+                plaintext[i] = 'a' + (plaintext[i] - 'a' + encryption_key) % 26;
             }
         }   
     }
     return plaintext;
 }
-

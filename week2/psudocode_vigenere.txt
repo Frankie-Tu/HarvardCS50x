@@ -1,0 +1,9 @@
+// check the number of arguments.
+ // if number of argument does not equal to 2 or fisrt argument(excluding file name) 
+    is not string.
+   // then print "usage: ./caesar key" as help message and exit program.
+ // else, ask user for string input.
+   // once user provides a string, loop through the character in string (char[]), 
+      and apply encryption logic to alphanumeric characters.
+ // print ciphertext.
+
