@@ -4,10 +4,10 @@
 #include <ctype.h>
 #include <string.h>
 
-int checkifint(string arg);
-string encrypt(string plaintext, int encrypt_key);
+int checkifint(char *arg);
+char *encrypt(char *plaintext, int encrypt_key);
 
-int main(int argc, string argv[])
+int main(int argc, char *argv[])
 {
     // check number of arguments, and if argv[1] is of integer value
     if (argc != 2 || checkifint(argv[1]) == 1)
@@ -18,15 +18,15 @@ int main(int argc, string argv[])
     else
     {
         int encryption_key = atoi(argv[1]);
-        string plaintext = get_string("plaintext: ");
-        string ciphertext = encrypt(plaintext, encryption_key);
+        char *plaintext = get_string("plaintext: ");
+        char *ciphertext = encrypt(plaintext, encryption_key);
         printf("ciphertext: %s\n", ciphertext);
     }
 }
 
-int checkifint(string arg)
+int checkifint(char *arg)
 {
-    // loop through characters in string (char[])
+    // loop through characters in string
     for (int i = 0; i < strlen(arg); i++)
     {
         if (! isdigit(arg[i]))
@@ -38,7 +38,7 @@ int checkifint(string arg)
     return 0;
 }
 
-string encrypt(string plaintext, int encrypt_key)
+char *encrypt(char *plaintext, int encrypt_key)
 {
     // encrypt string character by charater
     for (int i = 0; i < strlen(plaintext); i++)
@@ -54,8 +54,7 @@ string encrypt(string plaintext, int encrypt_key)
             {
                 plaintext[i] = 'a' + (plaintext[i] - 'a' + encrypt_key) % 26;
             }
-        }   
+        }
     }
     return plaintext;
 }
-

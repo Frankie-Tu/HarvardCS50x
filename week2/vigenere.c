@@ -4,10 +4,10 @@
 #include <ctype.h>
 #include <string.h>
 
-int checkifstring(string arg);
-string encrypt(string plaintext, string encryption_keys);
+int checkifstring(char *arg);
+char *encrypt(char *plaintext, char *encryption_keys);
 
-int main(int argc, string argv[])
+int main(int argc, char *argv[])
 {
     // check number of arguments, and if argv[1] is of integer value
     if (argc != 2 || checkifstring(argv[1]) == 1)
@@ -17,16 +17,16 @@ int main(int argc, string argv[])
     }
     else
     {
-        string encryption_keys = argv[1];
-        string plaintext = get_string("plaintext: ");
-        string ciphertext = encrypt(plaintext, encryption_keys);
+        char *encryption_keys = argv[1];
+        char *plaintext = get_string("plaintext: ");
+        char *ciphertext = encrypt(plaintext, encryption_keys);
         printf("ciphertext: %s\n", ciphertext);
     }
 }
 
-int checkifstring(string arg)
+int checkifstring(char *arg)
 {
-    // loop through characters in string (char[])
+    // loop through characters in string
     for (int i = 0; i < strlen(arg); i++)
     {
         if (! isalpha(arg[i]))
@@ -38,7 +38,7 @@ int checkifstring(string arg)
     return 0;
 }
 
-string encrypt(string plaintext, string encryption_keys)
+char *encrypt(char *plaintext, char *encryption_keys)
 {
     // encrypt string character by charater
     for (int i = 0; i < strlen(plaintext); i++)
@@ -48,7 +48,7 @@ string encrypt(string plaintext, string encryption_keys)
         {
             // convert current alphabetic value in encryption_keys to encryption_key
             encryption_key = tolower(encryption_keys[i % (strlen(encryption_keys))]) - 'a';
-            
+
             // encrypting logic, cipher
             if (isupper(plaintext[i]))
             {
@@ -58,7 +58,7 @@ string encrypt(string plaintext, string encryption_keys)
             {
                 plaintext[i] = 'a' + (plaintext[i] - 'a' + encryption_key) % 26;
             }
-        }   
+        }
     }
     return plaintext;
 }

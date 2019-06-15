@@ -2,7 +2,7 @@
 #include <cs50.h>
 
 int main(void)
-{    
-    string myName = get_string("What is your name?: ");
+{
+    char *myName = get_string("What is your name?: ");
     printf("hello, %s\n", myName);
 }
