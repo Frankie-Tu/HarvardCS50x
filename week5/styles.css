@@ -1,0 +1,29 @@
+.profile_pic
+{   
+    width: 260px; 
+    height: 260px; 
+    float: left;
+    border-style: solid;
+    border-color: rgb(148, 141, 141);
+    border-width: 3px;
+    margin: 1px 10px 1px 1px;
+}
+
+div
+{
+    min-width: 1500px;
+    max-width: 1700px;
+}
+
+p
+{
+    font-size: 15pt;
+}
+
+.project
+{
+    min-width: 1500px;
+    max-width: 1700px;
+    height: 100px;
+    font-size: 15pt;
+}
